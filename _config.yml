@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://lijiangit.gitee.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -119,5 +119,5 @@ theme: hexo-theme-matery
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:lijian69/lijian69.github.io.git
+  repo: git@gitee.com:LiJianGit/LijianGit.git
   branch: master

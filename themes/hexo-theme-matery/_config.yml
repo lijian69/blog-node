@@ -271,7 +271,7 @@ postCalendar: true
 gitalk:
   enable: true
   owner: lijian69
-  repo: https://github.com/lijian69/lijian69.github.io.git
+  repo: https://github.com/lijian69/blog-node.git
   oauth:
     clientId: 16803d698acc77bcbde9
     clientSecret: 9d02b4eddd7aebaaf5b91d4eba845ea490beba2e
