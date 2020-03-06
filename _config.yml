@@ -119,5 +119,7 @@ theme: hexo-theme-matery
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@gitee.com:LiJianGit/LijianGit.git
+  repo:
+    - git@gitee.com:LiJianGit/LijianGit.git
+    - git@github.com:lijian69/lijian69.github.io.git
   branch: master
