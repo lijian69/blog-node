@@ -47,3 +47,157 @@ class Solution {
 }
 ```
 
+### 2、反转链表 - 206
+
+#### (1) 试题详情
+
+`跳转到LeetCode` [LeetCode-206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+
+给定一个链表，请你反转一个单链表。
+
+#### (2) 试题实例
+
+---
+
+```
+输入: 1->2->3->4->5->NULL
+输出: 5->4->3->2->1->NULL
+```
+
+---
+
+#### (3) 试题解决方案
+
+```java
+/**
+ * 链表反转
+ *
+ * @author jian.li
+ * @date 2020年 03月06日 15:50:53
+ */
+public class ReverseList {
+
+    public static void main(String[] args) {
+        ListNode listNode = new ListNode(2);
+        listNode.next = new ListNode(1);
+        listNode.next.next = new ListNode(3);
+        listNode.next.next.next = new ListNode(4);
+
+        ListNode newList = reverseList(listNode);
+        newList.toListString();
+
+    }
+
+    public static ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode curr = head;
+        while(curr != null){
+            ListNode next =  curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+
+
+    public void toListString() {
+        System.out.print(val + " -> ");
+        while (next != null){
+            System.out.print(next.val + " -> ");
+            next = next.next;
+        }
+        System.out.print("null");
+    }
+}
+```
+
+###  3、用队列实现栈 - 225
+
+#### (1) 试题详情 
+
+`跳转到LeetCode` [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)
+
+使用队列实现栈的下列操作：
+
+- push(x) -- 元素 x 入栈
+- pop() -- 移除栈顶元素
+- top() -- 获取栈顶元素
+- empty() -- 返回栈是否为空
+
+**注意**
+
+- 你只能使用队列的基本操作-- 也就是 push to back, peek/pop from front, size, 和 is empty 这些操作是合法的。
+- 你所使用的语言也许不支持队列。 你可以使用 list 或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。
+- 你可以假设所有操作都是有效的（例如, 对一个空的栈不会调用 pop 或者 top 操作）。
+
+
+
+#### (2) 解决办法
+
+```java
+public class MyStatckDemo{
+    public static void main(String[] args) {
+        MyStack myStack = new MyStack();
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(1);
+        System.out.println(myStack.pop());
+        System.out.println(myStack.top());
+    }
+}
+class MyStack {
+
+    private List<Integer> list ;
+    private int size = 0;
+    /** Initialize your data structure here. */
+    public MyStack() {
+        list = new ArrayList();
+    }
+
+    /** Push element x onto stack. */
+    public void push(int x) {
+        list.add(x);
+        size ++;
+    }
+
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        if (size != 0){
+            Integer remove = list.remove(size - 1);
+            size --;
+            return remove;
+        }
+        return -1;
+    }
+
+    /** Get the top element. */
+    public int top() {
+        if (size != 0){
+            Integer value = list.get(size - 1);
+            return value;
+        }
+        return -1;
+    }
+
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        if (size == 0){
+            return true;
+        }
+        return false;
+    }
+}
+```
+
+
+
+
+
