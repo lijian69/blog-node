@@ -1,6 +1,5 @@
 ---
-title: Java必备知识总结 
-top: true   
+title: Java必备知识总结   
 categories: 后台开发   
 tags:
   - java

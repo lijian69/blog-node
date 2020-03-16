@@ -1,12 +1,10 @@
 ---
 title: React 学习
 top: true 
-categories: 算法   
+categories: 前端   
 tags:
-  - LeetCode
-  - 算法
-  - java
-
+  - nodejs
+  - 前端
 ---
 
 
@@ -44,7 +42,8 @@ create-react-app 项目名
 
 ### 2. React 元素的渲染
 
-```react
+```
+
 class ShoppingList extends React.Component {
   render() {
     return (
@@ -65,7 +64,7 @@ class ShoppingList extends React.Component {
 
 JSX 语法
 
-```react
+```
 let h1 = <h1> hello word </h1>;
 // 但是 只能有一个根节点
 let root = document.querySelecter('#root');
@@ -92,7 +91,7 @@ setInterval(clock,1000);
 
 - 方式2
 
-```react
+```
 // react 函数式组件
 function Clock(props){
 	return {
@@ -169,7 +168,7 @@ class HelloWord extends React.component{
 
 > 相当于 Vue 的 Data,但是 不建议主动赋值 而是采用 setState({ })
 
-```react
+```jsx
 export default class Clock extends React.Component {
     constructor(props){
         super(props)
@@ -204,7 +203,7 @@ export default class Clock extends React.Component {
 
 实例1： 点击内容进行切换
 
-```react
+```jsx
 export default class Clock extends React.Component {
     constructor(props){
         super(props)
@@ -257,7 +256,7 @@ export default class Clock extends React.Component {
 
 实例1： 父组件 -> 子组件的数据传递
 
-```react
+```jsx
 export default class ParentCom extends React.Component {
   
     constructor(props){
@@ -309,7 +308,7 @@ class ChildCom extends React.Component{
 
 > 这里不像 Vue 这么强大了，调用父元素的 函数 来改变父的状态
 
-```react
+```jsx
 export default class ParentCom extends React.Component {
   
     constructor(props){
@@ -374,37 +373,37 @@ class ChildCom extends React.Component{
 
 3. 阻止默认的 Form 的提交 , 阻止默认 `e.preventDefault();`
 
-   ```react
-   export default class ParentCom extends React.Component {
-     
-       constructor(props){
-           super(props) 
-       }
-    
-       render(){
-           return (
-               <form action="http://www.baidu.com">
-                   <div>
-                       <button onClick={this.parentEvent}>点击</button>
-                   </div>
-               </form>
-           )
-       }
-       parentEvent = (e) => {
-           console.log(e);
-           // 组织跳转到 百度
-           e.preventDefault();
-       }
-       
+```jsx
+export default class ParentCom extends React.Component {
+ 
+   constructor(props){
+       super(props) 
    }
-   ```
+
+   render(){
+       return (
+           <form action="http://www.baidu.com">
+               <div>
+                   <button onClick={this.parentEvent}>点击</button>
+               </div>
+           </form>
+       )
+   }
+   parentEvent = (e) => {
+       console.log(e);
+       // 组织跳转到 百度
+       e.preventDefault();
+   }
+   
+}
+```
 
 
 ### 8. React 条件渲染
 
 `实例1：`条件渲染是否 登录
 
-```react
+```jsx
 import React from "react";
 function UserGreet(props) {
     return (<h1>您已经登录</h1>)
