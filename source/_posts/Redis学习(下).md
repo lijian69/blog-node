@@ -33,3 +33,64 @@ tags:
 
 ![redis 主从复制](./images/redis/redis3.png)
 
+**主从复制**
+
+1. **读写分离**
+2. **数据被复制了好多分**
+
+### Redis 主从复制配置
+
+#### 通用安装包redis
+
+1. 主数据库不需要任务配置，创建一个从数据库
+
+redis.conf 配置文件信息添加
+
+```
+-- port 6380
+-- slaveof 127.0.0.1 6379
+```
+
+2. 启动从服务器
+
+```
+./bin/redis-server ./redisconf --port 6380 --saveof 127.0.0.1 6379
+```
+
+#### Docker 配置 Redis 主从复制
+
+http://note.youdao.com/noteshare?id=7eeea47aaa338fb6625ec994257d73a9
+
+
+
+### Redis 哨兵模式
+
+解决 redis master主机出现宕机的可能 。
+
+> 有了主从复制实现之后，我们如果想从服务器进行监控，那么在redis2.6以后提供了一个 哨兵 机制，并在 2.8 版本稳定下来。
+
+![redis 哨兵](./images/redis/redis哨兵.png)
+
+**核心：心跳机制** 快慢不定
+
+> 1.不时地监控redis 是够按照预期良好的运行
+>
+> 2.如果出现某个redis 节点运行出现状况，能够通知另外一个进程
+>
+> 3.能够进行自动切换，当一个master节点不可用时，能够选举出master的多个slave中的一个作为新的master，其他的slave节点追随新的master地址。
+
+### Redis Cluster集群
+
+为了在大流量的访问下提供服务。解决高可用、高并发
+
+Redis 集群搭建有多种，但从redis3.0 之后**最少使用3个master和3个slave才能建立集群**
+
+Redis Cluster 采用无中心结构，每一个节点保存数据和整个集群状态，每一个节点都和其他所有节点相连，
+
+![redis-cluster](./images/redis/redis-cluster.png)
+
+1. 所有的 redis 节点彼此环联，内部采用二进制协议优化传输速度和带宽
+2. 节点的 fail 是通过集群中超过半数的节点检测失效才生效
+3. 客户端和 redis 节点直连，不需要中间proxy层，客户端不需要连接集群的所有节点，连接集群中任意一个节点即可。
+4. redis cluster 把所有的物理节点映射到（0-16383）slot 上。
+5. Redis 集群预先分好 16384 个哈希槽，当需要在redis 集群中放置一个 key-value 时，redis先对key使用 crc16 算法算出一个结果，然后把结果对 16384 求余数，这样每个 key 都会对应一个编号在 0-16383 之间的哈希槽，redis会根据节点数量大致均等的将哈希槽映射到不同的节点中。
