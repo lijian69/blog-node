@@ -141,7 +141,7 @@ watch key [keys ...]
 - 命令序列化，入队
 - 执行事务 exec
 
-![redis 事务](./images/redis/redis-trans.jpg)
+![redis 事务](https://s1.ax1x.com/2020/04/10/GoFAv8.png)
 
 ### 实例1 multi exec
 
@@ -307,7 +307,7 @@ aof 文件会越来越大，产生很多冗余无用的记录
 
 ### Redis 恢复机制
 
-![redis 恢复机制](./images/redis/redis-aof-rdb.jpg)
+![redis 恢复机制](https://s1.ax1x.com/2020/04/10/GoFK5n.png)
 
 ## Redis 缓存和数据一致性
 
@@ -340,17 +340,18 @@ aof 文件会越来越大，产生很多冗余无用的记录
 > ​	  1.  邮箱发送注册成功
 >
 > 								2. 手机号发送验证码
+>
 >    								3. 将注册信息插入到数据库中
 
 异步队列：解耦、异步、削峰
 
 ### 3、使用阿里的同步工具 canal
 
-![canal](./images/redis/canal.png)
+![canal](https://s1.ax1x.com/2020/04/10/GoF3vT.png)
 
 **Canal 工作原理**
 
-![canal 工作原理](./images/redis/canal2.png)
+![canal 工作原理](https://s1.ax1x.com/2020/04/10/GoF08x.png)
 
 ### 4、采用 UDF 自定义函数编写
 
@@ -410,5 +411,5 @@ localhost:8080/user?id=asdf;sladkfs 后台就会解密失败
 3. 在value设置一个比过期时间t0小的过期时间值t1，当t1过期的时候，延长t1并做更新缓存操作。
 4. 设置标签缓存，标签缓存设置过期时间，标签缓存过期后，需要异步的更新实际缓存
 
-![双重锁实现数据查询](./images/redis/lock.png)
+![双重锁实现数据查询](https://s1.ax1x.com/2020/04/10/GoF6qe.png)
 
