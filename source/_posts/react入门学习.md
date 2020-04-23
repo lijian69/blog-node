@@ -1,6 +1,5 @@
 ---
-title: React 学习
-top: true 
+title: React 学习 
 categories: 前端   
 tags:
   - nodejs

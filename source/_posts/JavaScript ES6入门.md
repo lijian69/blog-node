@@ -3,11 +3,9 @@
 title: JavaScript ES6入门   
 categories: 前端开发   
 tags:
-
   - JavaScript
   - ES6
-  - 前端
-
+  - 前端 
 ---
 
 ## 第 1 章 变量的用法
