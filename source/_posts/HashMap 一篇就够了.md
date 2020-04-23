@@ -16,7 +16,7 @@ tags:
 
 ### 一篇文章学会 HashMap？
 
-![欢迎阅览](https://upload-images.jianshu.io/upload_images/5644137-493dcd2fd575e8b2.jpg?imageMogr2/auto-orient/strip)
+![欢迎阅览](https://pic.downk.cc/item/5ea0f4aec2a9a83be57836d3.gif)
 
 ---
 >作者介绍：
@@ -28,7 +28,7 @@ tags:
 
 ## Q1：你用过 HashMap 吗？，你能跟我说说它的数据结构吗？
 **回答：** HashMap 是一种容器类型，通过 Key-Value 键值对存储数据，JDK1.8 之前采用 `数组+链表` 的数据结构，但是在 JDK1.8 以及 1.8 之后采用的`数组+链表+红黑树`的数据结构底部存储数据，当链表的长度（阈值）达到 **8** 的时候，它的链表会转换为红黑树，当红黑树的长度减小到 **6** 的时候，红黑树转换为链表，为什么是 **8** 呢？，因为西方的采用**泊松分布**减少Hash的碰撞次数。
-![HashMap的底部数据结构](https://upload-images.jianshu.io/upload_images/5644137-353e3d3f46f37f1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![HashMap的底部数据结构](https://pic.downk.cc/item/5ea0f419c2a9a83be577c94d.png)
 
 ## Q2：HashMap中 hash 函数怎么是是实现的?
 **回答：** `异或 + 与 运算` 。“模”运算的消耗还是比较大的，能不能找一种更快速，消耗更小的方式，我们来看看JDK1.8采用**位异或**方式代替取模运算。(h ^ (h >>> 16)) hash函数的位干扰。减少hash碰撞。
@@ -47,10 +47,11 @@ static final int hash(Object key) {
      return  (n-1)&(h ^ (h >>> 16));
 }
 ```
-![image.png](https://upload-images.jianshu.io/upload_images/5644137-3d35043ddf845c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://pic.downk.cc/item/5ea0f45ac2a9a83be577f8ba.png)
 **简单来说就是**
           1.高16bt位不变，低16bit位和高16bit位做了一个异或(得到的HASHCODE转化为32位的二进制，前16位和后16位低16bit和高16bit做了一个异或【相同得0，不同得1】)
           2.(n-1)&hash == 最终hash
+
 ## Q2：谈一下HashMap的特性？
 **回答：**
 - HashMap键值对存储数据实现快速存储，key-value允许为null,key值不可重复，若key重复则覆盖。
@@ -60,7 +61,7 @@ static final int hash(Object key) {
 **回答：** 之所以选择红黑树是为了解决二叉查找树的缺陷，二叉查找树在特殊情况下会变成一条线性结构（这就跟原来使用链表结构一样了，造成很深的问题），遍历查找会非常慢。而红黑树在插入新数据后可能需要通过左旋，右旋、变色这些操作来保持平衡，引入红黑树就是为了查找数据快，解决链表查询深度的问题，我们知道红黑树属于平衡二叉树，但是为了保持“平衡”是需要付出代价的，但是该代价所损耗的资源要比遍历线性链表要少，所以当长度大于8的时候，会使用红黑树，如果链表长度很短的话，根本不需要引入红黑树，引入反而会慢。
 
 ## Q4：说说你对红黑树的见解？
-![image.png](https://upload-images.jianshu.io/upload_images/5644137-3f5e5c7cae180380.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://pic.downk.cc/item/5ea0f476c2a9a83be5780deb.png)
 - 每个节点非红即黑
 - 根节点总是黑色的
 - 如果节点是红色的，则它的子节点必须是黑色的（反之不一定）
@@ -69,10 +70,11 @@ static final int hash(Object key) {
 
 ## Q4： 解决hash 碰撞还有那些办法？
 开放定址法。
+
 ## Q3：HashMap的工作原理？
 **回答：** HashMap给予Hashing原理，采用native本地方法调用C++函数写的获取Hash值。我们在通过get()和put()的时候，都要通过哈希算法计算出key的hashcode值，返回的hashcode值用于方便找到Bucket位置来储存或者获得Entry对象，JDK把Entry<K,T>改名为Node<K,T>对象，在put的时候，如果该位置已经有元素了，调用equals方法判断是否相等，相等的话进行替换，不相等的话，新增Node节点放在链表或者红黑树里面。
 当获取对象的时候，通过键对象的equals()方法找到正确的键值对，然后返回值对象，HashMap使用链表或者红黑树来解决碰撞问题，当发生碰撞的时候，对象会存储在链表的下一个节点中。
-![image.png](https://upload-images.jianshu.io/upload_images/5644137-c26264db45a1a8e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://pic.downk.cc/item/5ea0f496c2a9a83be57824f7.png)
 
 ## Q4：如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？
 **回答：** 默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作rehashing，因为它调用hash方法找到新的bucket位置。这个值只可能在两个地方，一个是原下标的位置，另一种是在下标为<原下标+原容量>的位置。在1.7版本，多线程下容易发生线程不安全，在重Hash迁移数组的时候，容易出现链表死循环。
